@@ -54,7 +54,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/penelitian-user/create/{penelitian}', 'PenelitianUserController@create')->name('admin.penelitian-user.create'); //form tambah anggota
     Route::delete('/admin/penelitian-user/{penelitian}/{user}', 'PenelitianUserController@destroy')->name('admin.penelitian-user.destroy'); //hapus anggota
     
-  
+    /** Routing Organisasi Mahasiswa*/
+    Route::get('/admin/organisasimhs', 'OrganisasimhsController@index')->name('admin.organisasimhs.index');  //routing lihat daftar organisasimhs
+    Route::post('/admin/organisasimhs', 'OrganisasimhsController@store')->name('admin.organisasimhs.store'); //routing simpan data organisasimhs baru
+    Route::get('/admin/organisasimhs/create', 'OrganisasimhsController@create')->name('admin.organisasimhs.create'); //routing tampilkan form data organisasimhs baru
+    Route::delete('/admin/organisasimhs/{organisasimhs}', 'OrganisasimhsController@destroy')->name('admin.organisasimhs.destroy'); //routing hapus data organisasimhs baru
+    Route::patch('/admin/organisasimhs/{organisasimhs}', 'OrganisasimhsController@update')->name('admin.organisasimhs.update'); //routing simpan perubahan data organisasimhs
+    Route::get('/admin/organisasimhs/{organisasimhs}', 'OrganisasimhsController@show')->name('admin.organisasimhs.show'); //routing tampilkan detail organisasimhs
+    Route::get('/admin/organisasimhs/{organisasimhs}/edit', 'OrganisasimhsController@edit')->name('admin.organisasimhs.edit');  //routing tampilkan form edit organisasimhs
     
 
 
@@ -67,10 +74,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/organisasi-mhs', 'OrganisasimhsController@index')->name('admin.organisasi-mhs.index');  //routing lihat daftar mahasiswa
     Route::post('/admin/organisasi-mhs', 'OrganisasimhsController@store')->name('admin.organisasi-mhs.store'); //routing simpan data mahasiswa baru
     Route::get('/admin/organisasi-mhs/create', 'OrganisasimhsController@create')->name('admin.organisasi-mhs.create'); //routing tampilkan form data mahasiswa baru
-    
-    
-    
-    
     
     
     
