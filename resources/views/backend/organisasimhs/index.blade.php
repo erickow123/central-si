@@ -72,7 +72,7 @@
                                 <td class="text-center">
                                     {!! cui_btn_view(route('admin.mahasiswa.show', [$mahasiswa->id])) !!}
                                     {!! cui_btn_edit(route('admin.organisasi-mhs.edit', [$organisasi-mhs->id])) !!}
-                                    {!! cui_btn_delete(route('admin.organisasi-mhs.destroy', [$organisasi-mhs->id]), "Anda yakin akan menghapus data organisasi mahasiswa ini?") !!}
+                                    {!! cui_btn_delete(route('admin.organisasi-mhs.destroy', [$organisasimhs->id]), "Anda yakin akan menghapus data organisasi mahasiswa ini?") !!}
                                 </td>
                             </tr>
                         @endforeach
