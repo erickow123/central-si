@@ -70,6 +70,12 @@
                     <i class="nav-icon fas fa-book"></i> Kelola Penelitian
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.organisasimhs.index') }}">
+                    <i class="nav-icon fas fa-minus"></i> Kelola Organisasi
+                </a>
+            </li>
         </ul>
     </nav>
 

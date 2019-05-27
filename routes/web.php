@@ -60,6 +60,15 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+Route::get('/admin/organisasi-mhs', 'MahasiswaController@index')->name('admin.organisasi-mhs.index');  //routing lihat daftar mahasiswa
+Route::get('/admin/organisasi-mhs/create', 'MahasiswaController@create')->name('admin.organisasi-mhs.create'); //routing tampilkan form data mahasiswa baru
+
+// Route::get('/admin/organisasimhs/lihat','Organisasi-mhsController@lihat');
+
+Route::get('/admin/organisasimhs','OrganisasiMhsCOntroller@index')->name('admin.organisasimhs.index');
+ Route::get('/admin/organisasimhs/create', 'OrganisasiMhsCOntroller@create')->name('admin.organisasimhs.create');
+  Route::get('/admin/organisasimhs/store', 'OrganisasiMhsCOntroller@store')->name('admin.organisasimhs.store');
+
 Route::get('/', function () {
     return view('welcome');
 });

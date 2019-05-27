@@ -10,4 +10,7 @@ class RefJabatanOrganisasi extends Model
     protected $guarded = [];
 
     // Tambahkan Kode yang diperlukan dibawah ini
+    public function mahasiswaOrganisasi(){
+    	return $this-> belongsTo('App\RefJabatanOrganisasi','jabatan_id');
+    }
 }
