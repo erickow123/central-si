@@ -3,13 +3,13 @@
 @section('breadcrumb')
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
-        'Mahasiswa' => route('admin.mahasiswa.index'),
+        'Organisasimhs' => route('admin.organisasimhs.index'),
         'Edit' => '#'
     ]) !!}
 @endsection
 
 @section('toolbar')
-    {!! cui_toolbar_btn(route('admin.organisasimhs.index'), 'icon-list', 'List Mahasiswa') !!}
+    {!! cui_toolbar_btn(route('admin.organisasimhs.index'), 'icon-list', 'List Organisasimhs') !!}
 @endsection
 
 @section('content')
@@ -17,11 +17,11 @@
         <div class="col-md-12">
             <div class="card">
 
-                {{ Form::open(['route' => 'admin.organisasimhs.store', 'method' => 'post']) }}
+                {{ Form::open(['route' => 'admin.organisasimhs.store', 'method' => 'post','files'=>'true']) }}
 
                 {{-- CARD HEADER --}}
                 <div class="card-header">
-                    Tambah Organisasi
+                    Tambah Organisasi mahasiswa
                 </div>
 
                 {{-- CARD BODY --}}

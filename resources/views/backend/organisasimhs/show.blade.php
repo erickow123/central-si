@@ -3,6 +3,7 @@
 @section('breadcrumb')
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
+_
         'Organisasi Mahasiswa' => route('admin.organisasimhs.index'),
         'Index' => '#'
     ]) !!}
@@ -19,7 +20,9 @@
 
                 {{-- CARD HEADER--}}
                 <div class="card-header">
+
                     <strong>List Organisasi Mahasiswa</strong>
+                    Mahasiswa
                 </div>
 
                 {{-- CARD BODY--}}
