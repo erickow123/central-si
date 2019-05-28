@@ -9,7 +9,7 @@
 @endsection
 
 @section('toolbar')
-    {!! cui_toolbar_btn(route('admin.organisasimhs.index'), 'icon-list', 'List organisasimhs') !!}
+    {!! cui_toolbar_btn(route('admin.organisasimhs.index'), 'icon-list', 'List Organisasimhs') !!}
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <div class="card">
 
-                {{ Form::open(['route' => 'admin.organisasimhs.store', 'method' => 'post']) }}
+                {{ Form::open(['route' => 'admin.organisasimhs.store', 'method' => 'post','files'=>'true']) }}
 
                 {{-- CARD HEADER --}}
                 <div class="card-header">

@@ -41,6 +41,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/mahasiswa/{mahasiswa}/edit', 'MahasiswaController@edit')->name('admin.mahasiswa.edit');  //routing tampilkan form edit mahasiswa
 
     /** Routing untuk tugas mulai dari sini */
+
+
     /** Pengelolaan Penelitian */
     Route::get('/admin/penelitian', 'PenelitianController@index')->name('admin.penelitian.index');  //routing lihat daftar mahasiswa
     Route::post('/admin/penelitian', 'PenelitianController@store')->name('admin.penelitian.store'); //routing simpan data mahasiswa baru
@@ -54,6 +56,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/penelitian-user/create/{penelitian}', 'PenelitianUserController@create')->name('admin.penelitian-user.create'); //form tambah anggota
     Route::delete('/admin/penelitian-user/{penelitian}/{user}', 'PenelitianUserController@destroy')->name('admin.penelitian-user.destroy'); //hapus anggota
 
+    /**Pengelolaan organisasi mahasiswa*/
+
+    Route::post('/admin/organisasimhs', 'OrganisaimhsController@store')->name('admin.organisaimhs.store'); //routing simpan data organisaimhs baru
+    Route::get('/admin/organisasimhs/create', 'OrganisaimhsController@create')->name('admin.organisaimhs.create'); //routing tampilkan form data organisaimhs baru
 
     Route::get('pembimbing/submit', 'PembimbingSubmissionController@create')->name('admin.pembimbing.create');
     Route::post('pembimbing/submit', 'PembimbingSubmissionController@store')->name('admin.pembimbing.store');
