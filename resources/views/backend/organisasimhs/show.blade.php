@@ -1,10 +1,9 @@
-
 @extends('backend.layouts.app')
 
 @section('breadcrumb')
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
-        'OrganisasiMhs' => route('admin.organisasimhs.index'),
+        'Organisasi Mahasiswa' => route('admin.organisasimhs.index'),
         'Index' => '#'
     ]) !!}
 @endsection

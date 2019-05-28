@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\MahasiswaOrganisasi;
+use Illuminate\Support\Facades\Storage;
+use App\RefJabatanOrganisasi;
 
 class OrganisasiMhsCOntroller extends Controller
 {
@@ -12,11 +14,20 @@ class OrganisasiMhsCOntroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
-    {   
-        $org = MahasiswaOrganisasi::all();
-        return view('backend.organisasimhs.index', compact('org'));
+    {
+        $organisasimhss = MahasiswaOrganisasi::paginate(25);
+        return view('backend.organisasimhs.index', compact('organisasimhss'));
     }
+
+       public function show(MahasiswaOrganisasi $organisasimhs)
+    {
+        $organisasimhss = MahasiswaOrganisasi::all();
+        $file_bukti_url = Storage::url($organisasimhs->file_bukti);
+        return view('backend.organisasimhs.show', compact('organisasimhs', 'file_bukti_url', 'organisasimhss'));
+    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +36,7 @@ class OrganisasiMhsCOntroller extends Controller
      */
     public function create()
     {
-        return view('backend.organisasimhs.create');
+        
     }
 
     /**
@@ -45,10 +56,7 @@ class OrganisasiMhsCOntroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+   
 
     /**
      * Show the form for editing the specified resource.
