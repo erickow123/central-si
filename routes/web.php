@@ -1,3 +1,15 @@
+
+
+
+
+
+Letakkan dalam routes
+
+
+
+
+
+
 <?php
 
 /*
@@ -53,8 +65,31 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/penelitian-user/create', 'PenelitianUserController@store')->name('admin.penelitian-user.store'); //form tambah anggota
     Route::get('/admin/penelitian-user/create/{penelitian}', 'PenelitianUserController@create')->name('admin.penelitian-user.create'); //form tambah anggota
     Route::delete('/admin/penelitian-user/{penelitian}/{user}', 'PenelitianUserController@destroy')->name('admin.penelitian-user.destroy'); //hapus anggota
+    
+    /** Routing Organisasi Mahasiswa*/
+    Route::get('/admin/organisasimhs', 'OrganisasimhsController@index')->name('admin.organisasimhs.index');  //routing lihat daftar organisasimhs
+    Route::post('/admin/organisasimhs', 'OrganisasimhsController@store')->name('admin.organisasimhs.store'); //routing simpan data organisasimhs baru
+    Route::get('/admin/organisasimhs/create', 'OrganisasimhsController@create')->name('admin.organisasimhs.create'); //routing tampilkan form data organisasimhs baru
+    Route::delete('/admin/organisasimhs/{organisasimhs}', 'OrganisasimhsController@destroy')->name('admin.organisasimhs.destroy'); //routing hapus data organisasimhs baru
+    Route::patch('/admin/organisasimhs/{organisasimhs}', 'OrganisasimhsController@update')->name('admin.organisasimhs.update'); //routing simpan perubahan data organisasimhs
+    Route::get('/admin/organisasimhs/{organisasimhs}', 'OrganisasimhsController@show')->name('admin.organisasimhs.show'); //routing tampilkan detail organisasimhs
+    Route::get('/admin/organisasimhs/{organisasimhs}/edit', 'OrganisasimhsController@edit')->name('admin.organisasimhs.edit');  //routing tampilkan form edit organisasimhs
+    
 
 
+    
+    // /** Pengelolaan Organisasi Mahasiswa */
+    // Route::delete('/admin/organisasi-mhs/{organisasi-mhs}', 'OrganisasimhsController@destroy')->name('admin.organisasi-mhs.destroy'); //routing hapus data organisasi-mhs baru
+    // Route::patch('/admin/organisasi-mhs/{organisasi-mhs}', 'OrganisasimhsController@update')->name('admin.organisasi-mhs.update'); //routing simpan perubahan data organisasi-mhs
+    // Route::get('/admin/organisasi-mhs/{organisasi-mhs}', 'OrganisasimhsController@show')->name('admin.organisasi-mhs.show'); //routing tampilkan detail organisasi-mhs
+    // Route::get('/admin/organisasi-mhs/{organisasi-mhs}/edit', 'OrganisasimhsController@edit')->name('admin.organisasi-mhs.edit');  //routing tampilkan form edit organisasi-mhs
+    // Route::get('/admin/organisasi-mhs', 'OrganisasimhsController@index')->name('admin.organisasi-mhs.index');  //routing lihat daftar mahasiswa
+    // Route::post('/admin/organisasi-mhs', 'OrganisasimhsController@store')->name('admin.organisasi-mhs.store'); //routing simpan data mahasiswa baru
+    // Route::get('/admin/organisasi-mhs/create', 'OrganisasimhsController@create')->name('admin.organisasi-mhs.create'); //routing tampilkan form data mahasiswa baru
+    
+    
+    
+    
     Route::get('pembimbing/submit', 'PembimbingSubmissionController@create')->name('admin.pembimbing.create');
     Route::post('pembimbing/submit', 'PembimbingSubmissionController@store')->name('admin.pembimbing.store');
 
