@@ -22,7 +22,4 @@ class Mahasiswa extends Model
     }
 
     // Tambahkan Kode yang diperlukan dibawah ini
-    public function mahasiswaOrganisasi(){
-        return $this-> belongsTo('App\Mahasiswa','mahasiswa_id');
-    }
 }

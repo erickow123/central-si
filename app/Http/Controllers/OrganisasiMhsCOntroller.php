@@ -1,94 +1,99 @@
 <?php
+ namespace App\Http\Controllers;
+ use Illuminate\Http\Request;
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use App\Mahasiswa;
 use App\MahasiswaOrganisasi;
-use Illuminate\Support\Facades\Storage;
 use App\RefJabatanOrganisasi;
+use DB;
 
-class OrganisasiMhsCOntroller extends Controller
+ class OrganisasiMhsController extends Controller
 {
-    /**
+
+    public $organisasi_validation_rules = [
+        'mahasiswa_id' => 'required',
+        'organisasi' => 'required',
+        'jabatan_id' => 'required',
+        'tgl_mulai' => 'required',
+        'tgl_selesai' => 'required',
+        'file_bukti' => 'required'
+    ];
+
+     public function __construct(){
+        $this->middleware(['permission:manage_organisasimhs']);
+    }
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        $organisasimhss = MahasiswaOrganisasi::paginate(25);
-        return view('backend.organisasimhs.index', compact('organisasimhss'));
+        $mhs_organisasis = MhsOrganisasi::orderBy('created_at', 'desc')->paginate(25);
+        return view('backend.organisasi-mhs.index', compact('mhs_organisasis'));
     }
-
-       public function show(MahasiswaOrganisasi $organisasimhs)
-    {
-        $organisasimhss = MahasiswaOrganisasi::all();
-        $file_bukti_url = Storage::url($organisasimhs->file_bukti);
-        return view('backend.organisasimhs.show', compact('organisasimhs', 'file_bukti_url', 'organisasimhss'));
-    }
-    
-
-    /**
+     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+        {
+             $jabatan = RefJabatanOrganisasi::pluck('jabatan', 'id');
+            return view('backend.organisasi-mhs.create', compact('jabatan'));
+        }	 
+
+        public function store(Request $request)
+        {	 
+            $this->validate($request, $this->proposal_validation_rules);   
+            $data = $request->all();
+            MhsOrganisasi::create($data);
+            $id = DB::getPdo()->lastInsertId();
+            session()->flash('flash_success', 'Berhasil menambahkan data organisasi mahasiswa '. $request->input('organisasi'));
+            return redirect()->route('admin.organisasi-mhs.show', $id);
+        }	    
+        public function show($id)
+        {	    
+            $MhsOrganisasi = DB::table('mhs_organisasi')
+            ->join('ref_jabatan_organisasi', 'mhs_organisasi.jabatan_id', '=', 'ref_jabatan_organisasi.id')
+            ->select('mhs_organisasi.id', 'mhs_organisasi.mahasiswa_id', 'mhs_organisasi.organisasi', ',mhs_organisasi.jabatan_id', 'mhs_organisasi.tgl_mulai', 'mhs_organisasi.tgl_selesai', 'mhs_organisasi.file_bukti', 'ref_jabatan_organisasi.jabatan')
+            ->where('mhs_organisasi.id', '=', $id)
+            ->get();
+            $MhsOrganisasi = $MhsOrganisasi[0];
+            $anggotas = DB::table('mhs_organisasi')
+                        ->join('mahasiswa', 'mhs_organisasi.id', '=', 'mahasiswa.mhs_organisasi_id')
+                        ->join('jabatan', 'mhs_organisasi.jabatan_id', '=', 'jabatan.id')
+                        ->where('kp_proposal.id', '=', $id)
+                        ->get();
         
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-   
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+        return view('backend.organisasi-mhs.show', compact('MhsOrganisasi', 'anggotas'));
+        }	    
+        public function edit($id)
+        {	    
+            $MhsOrganisasi=MhsOrganisasi::findOrFail($id);
+            $jabatans = RefJabatanOrganisasi::all();
+            // dd($MhsOrganisasi);
+            return view('backend.organisasi-mhs.edit', compact('MhsOrganisasi', 'jabatans'));
+        }	    
+        public function update(Request $request, $id)
+        {	
+            $this->validate($request, $this->organisasi_validation_rules);    
+            $organisasi = MhsOrganisasi::findOrFail($id);
+            $data = $request->all();
+            $organisasi->update($data);
+            session()->flash('flash_success', 'Berhasil mengupdate data organisasi '.$request->input('organisasi'));
+            return redirect()->route('admin.organisasi-mhs.show', $id);
+        }	    
+        public function destroy($id)
+        {	    
+            $organisasi = MhsOrganisasi::findOrFail($id);
+            $MhsOrganisasi = MhsOrganisasi::destroy($id);       
+            try{
+                MhsOrganisasi::destroy($id);
+           session()->flash('flash_success', 'Berhasil Menghapus data organisasi '.$organisasi->organisasi);	            
+            }catch(Exception $e){
+               session()->flash('flash_warning', 'Gagal Menghapus data organisasi'.$organisasi->organisasi);
+           }
+            return redirect()->route('admin.organisasi-mhs.index');
+         }	    
 }

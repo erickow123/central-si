@@ -3,14 +3,13 @@
 @section('breadcrumb')
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
-_
-        'Organisasi Mahasiswa' => route('admin.organisasimhs.index'),
+        'Organisasi Mahasiswa' => route('admin.organisasi-mhs.index'),
         'Index' => '#'
     ]) !!}
 @endsection
 
 @section('toolbar')
-    {!! cui_toolbar_btn(route('admin.organisasimhs.create'), 'icon-plus', 'Tambah Organisasi') !!}
+    {!! cui_toolbar_btn(route('admin.organisasi-mhs.create'), 'icon-plus', 'Tambah Organisasi Mahasiswa') !!}
 @endsection
 
 @section('content')
@@ -20,52 +19,48 @@ _
 
                 {{-- CARD HEADER--}}
                 <div class="card-header">
-
                     <strong>List Organisasi Mahasiswa</strong>
-                    Mahasiswa
                 </div>
 
                 {{-- CARD BODY--}}
                 <div class="card-body">
 
-                    <div class="row justify-content-end">
+                  <!--  <div class="row justify-content-end">
                         <div class="col-md-6 text-right">
-
+                            <form method="post" action="{{ route('admin.organisasi-mhs.show') }}" class="form-inline">
+                                {{ csrf_field() }}
+                                <input type="text" name="keyword" class="form-control" value="@if(isset($keyword)) {{ $keyword }} @endif" placeholder="Masukkan Keyword" />
+                                <input type="submit" name="submit" class="btn btn-primary" value="Cari" />
+                            </form>
                         </div>
                         <div class="col-md-6 justify-content-end">
                             <div class="row justify-content-end">
-                                {{ $organisasimhss->links() }}
+                                {{ $mhs-organisasis->links() }}
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover mt-4" id="tabelOrganisasiMahasiswa">
                         <thead>
                         <tr>
+                            <th class="text-center">No</th>
                             <th class="text-center">Organisasi</th>
-                            <th class="text-center">Jabatan</th>
-                            <th class="text-center">ID Mahasiswa</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($organisasimhss as $organisasimhs)
+                        @foreach($mhs_organisasis as $mhs_organisasi)
                             <tr>
-                                <td class="text-center">{{ $organisasimhs->organisasi }}</td>
-                                <td >{{ $organisasimhs->jabatan_id }}</td>
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td>{{ $mhs_organisasi->organisasi }}</td>
                                 <td class="text-center">
-                                    {!! cui_btn_view(route('admin.organisasimhs.show', [$organisasimhs->id])) !!}
-                                    {!! cui_btn_edit(route('admin.organisasimhs.edit', [$organisasimhs->id])) !!}
-                                    {!! cui_btn_delete(route('admin.organisasimhs.destroy', [$organisasimhs->id]), "Anda yakin akan menghapus data organisasi ini?") !!}
+                                    {!! cui_btn_view(route('admin.organisasi-mhs.show', [$mhs_organisasi->id])) !!}
+                                    {!! cui_btn_edit(route('admin.organisasi-mhs.edit', [$mhs_organisasi->id])) !!}
+                                    {!! cui_btn_delete(route('admin.organisasi-mhs.destroy', [$mhs_organisasi->id]), "Anda yakin akan menghapus data organisasi ini?") !!}
+                                    
                                 </td>
                             </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="text-center">
-                                    Data organisasi belum ada
-                                </td>
-                            </tr>
-                        @endforelse
+                        @endforeach
                         </tbody>
                     </table>
 
@@ -75,7 +70,7 @@ _
                         </div>
                         <div class="col-md-6 justify-content-end">
                             <div class="row justify-content-end">
-                                {{ $organisasimhss->links() }}
+                                {{ $mhs_organisasis->links() }}
                             </div>
                         </div>
                     </div>
