@@ -1,10 +1,10 @@
+
 @extends('backend.layouts.app')
 
 @section('breadcrumb')
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
-_
-        'Organisasi Mahasiswa' => route('admin.organisasimhs.index'),
+        'OrganisasiMhs' => route('admin.organisasimhs.index'),
         'Index' => '#'
     ]) !!}
 @endsection
@@ -20,9 +20,7 @@ _
 
                 {{-- CARD HEADER--}}
                 <div class="card-header">
-
                     <strong>List Organisasi Mahasiswa</strong>
-                    Mahasiswa
                 </div>
 
                 {{-- CARD BODY--}}

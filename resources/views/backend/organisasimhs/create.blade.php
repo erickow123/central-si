@@ -21,7 +21,7 @@
 
                 {{-- CARD HEADER --}}
                 <div class="card-header">
-                    Tambah Organisasimhs
+                    Tambah Organisasi mahasiswa
                 </div>
 
                 {{-- CARD BODY --}}

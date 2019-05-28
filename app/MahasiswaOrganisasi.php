@@ -10,4 +10,14 @@ class MahasiswaOrganisasi extends Model
     protected $guarded = [];
 
     // Tambahkan Kode yang diperlukan dibawah ini
+    public function anggotas()
+    {
+        return $this->hasMany(OrganisasimhsUser::class);
+    }
+
+    public function jabatan_organisasi()
+    {
+        return $this->belongsTo(RefJabatanOrganisasi::class, 'mahasiswa_organisasi_id');
+    }
+
 }
