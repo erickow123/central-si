@@ -11,6 +11,7 @@ use DB;
 {
 
     public $organisasi_validation_rules = [
+
        'mahasiswa_id' => 'required',
         'organisasi' => 'required',
         'jabatan_id' => 'required',
@@ -19,7 +20,7 @@ use DB;
         'file_bukti' => 'required'
     ];
 
-     
+
     public function index()
     {
         $mhs_organisasis = MahasiswaOrganisasi::
@@ -105,11 +106,14 @@ use DB;
             $namas = Mahasiswa::all();
             // dd($MhsOrganisasi);
             return view('backend.organisasi-mhs.edit', compact('MhsOrganisasi', 'jabatans','namas'));
+
         }	    
         public function update(Request $request, $id)
         {	
             $this->validate($request, $this->organisasi_validation_rules);    
+
             $organisasi = MahasiswaOrganisasi::findOrFail($id);
+
             $data = $request->all();
             $organisasi->update($data);
             session()->flash('flash_success', 'Berhasil mengupdate data organisasi '.$request->input('organisasi'));
@@ -117,10 +121,12 @@ use DB;
         }	    
         public function destroy($id)
         {	    
+
             $organisasi = MahasiswaOrganisasi::findOrFail($id);
             MahasiswaOrganisasi::destroy($id);       
             try{
                 MahasiswaOrganisasi::destroy($id);
+
            session()->flash('flash_success', 'Berhasil Menghapus data organisasi '.$organisasi->organisasi);	            
             }catch(Exception $e){
                session()->flash('flash_warning', 'Gagal Menghapus data organisasi'.$organisasi->organisasi);

@@ -1,12 +1,15 @@
 @extends('backend.layouts.app')
 
+
 @section('breadcrumb')
+
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
         'Organisasi Mahasiswa' => route('admin.organisasi-mhs.index'),
         'Detail' => '#'
     ]) !!}
 @endsection
+
 
 @section('toolbar')
    
@@ -15,6 +18,7 @@
 @endsection
 
 @section('content')
+
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -27,7 +31,7 @@
                  {{-- CARD BODY--}}
                 <div class="card-body">
 
-                     {{ Form::model($organisasi, []) }}
+            {{ Form::model($organisasi, []) }}
 
                     
                      <div class="form-group">
@@ -39,7 +43,7 @@
                         {!! Form::text('nama', null, ['class' => 'form-control-plaintext', 'id' => 'nama', 'readonly' => 'readonly', 'disabled']) !!}
                     </div>
 
-                    
+
                      <div class="form-group">
                         <label for="organisasi"> <b>Organisasi</b> </label>
                         {!! Form::text('organisasi', null, ['class' => 'form-control-plaintext', 'id' => 'organisasi', 'readonly' => 'readonly', 'disabled']) !!}
@@ -49,7 +53,7 @@
                         <label for="jabatan_id"> <b>Jabatan</b> </label>
                         {{ Form::text('jabatan_id', null, ['class' => 'form-control-plaintext', 'id' => 'jabatan_id', 'readonly' => 'readonly', 'disabled']) }}
                     </div>
-                    <br>
+
                      <div class="form-group">
                         <label for="tgl_mulai"> <b>Tanggal Mulai</b> </label>
                         {{ Form::input('date', 'tgl_mulai', null, ['class' => 'form-control-plaintext', 'id' => 'tgl_mulai', 'readonly' => 'readonly', 'disabled']) }}
@@ -59,6 +63,8 @@
                         <label for="tgl_selesai"> <b>Tanggal Selesai</b> </label>
                         {{ Form::input('date', 'tgl_selesai', null, ['class' => 'form-control-plaintext', 'id' => 'tgl_selesai', 'readonly' => 'readonly', 'disabled']) }}
                     </div>
+
+
                      <div class="form-group">
                         <label for="download"><strong>File Bukti</strong></label>
                         {{ Form::text('download', null, ['class' => 'form-control-plaintext', 'id' => 'download', 'readonly' => 'readonly']) }}
@@ -69,6 +75,7 @@
                      
 
                  
+
 
                  {{-- CARD FOOTER --}}
                 <div class="card-footer">

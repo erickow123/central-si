@@ -64,20 +64,15 @@
                 </ul>
             </li>
 
-           <!-- {{--  PENGELOLAAN PENELITIAN--}}
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.penelitian.index') }}">
-                    <i class="nav-icon fas fa-book"></i> Kelola Penelitian
-                </a>
-            </li>
-            -->
-            {{--Organisasi Mahasiswa--}}
-            <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.organisasimhs.index') }}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.organisasi-mhs.index') }}">
                             <i class="nav-icon fas fa-users"></i> Organisasi Mahasiswa
                         </a>
                     </li>
+
+               
             
+                
         </ul>
     </nav>
 

@@ -26,10 +26,7 @@
                 </div>
 
                  {{-- CARD BODY--}}
-               
-              
-                
-                
+       
                 <div class="card-body">
 
                      <div class="form-group">
@@ -41,12 +38,14 @@
                                     selected='selected'
                                     @endif>
                                     {{ $nama->nama }}      
+
                                 </option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="form-group">
+                <div class="card-body">
+<div class="form-group">
                         <label for="organisasi">Organisasi</label>
                         {{ Form::text('organisasi', null, ['class' => 'form-control', 'id' => 'organisasi', 'placeholder' => 'Organisasi Mahasiswa', 'required' => 'required']) }}
                     </div>
@@ -76,11 +75,11 @@
                         <label for="tgl_selesai">Tanggal Selesai</label>
                         {{ Form::input('date', 'tgl_selesai', null, ['class' => 'form-control', 'id' => 'tgl_selesai', 'placeholder' => 'Tanggal Selesai Organisasi', 'required' => 'required']) }}
                     </div>
+
                     <div class="form-group">
                         <label for="file_bukti">Surat Bukti Pengesahan</label>
                         {{ Form::file('file_bukti', null, ['class' => 'form-control', 'id' => 'file_bukti', 'placeholder' => 'File Bukti', 'required' => 'required']) }}
                     </div>
-
 
                 </div>
 

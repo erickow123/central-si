@@ -26,18 +26,21 @@
 
                 {{-- CARD BODY--}}
                 <div class="card-body">
-                
+        
                 <div class="form-group">
                     <label for="mahasiswa_id">Nama Mahasiswa*</label>
                     {{ Form::select('mahasiswa_id', $mahasiswa, null, ['class' => 'form-control', 'id' => 'mahasiswa_id', 'placeholder' => ' Mahasiswa']) }}
+
                 </div>
                 <div class="form-group">
                     <label for="organisasi">Organisasi*</label>
                     {{ Form::text('organisasi', null, ['class' => 'form-control', 'id' => 'organisasi', 'placeholder' => 'Organisasi Mahasiswa']) }}
                 </div>
                 <div class="form-group">
+
                     <label for="jabatan">Jabatan*</label>
                     {{ Form::select('jabatan_id', $ref_jabatan_organisasi, null, ['class' => 'form-control', 'id' => 'jabatan_id', 'placeholder' => 'Jabatan Mahasiswa']) }}
+
                 </div>
                 <div class="form-group">
                      <label for="tgl_mulai">Tanggal Mulai Organisasi*</label>

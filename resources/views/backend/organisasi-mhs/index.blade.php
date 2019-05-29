@@ -25,17 +25,19 @@
                 {{-- CARD BODY--}}
                 <div class="card-body">
 
-                 
+
                     <table class="table table-striped table-hover mt-4" id="tabelOrganisasiMahasiswa">
                         <thead>
                         <tr>
                             <th class="text-center">No</th>
+
                             <th class="text-center">NIM</th>
                             <th class="text-center">Nama</th> 
                             
                            <th class="text-center">Organisasi</th>
                            
                        
+
                             <th class="text-center">Aksi</th>
                         </tr>
                         </thead>
@@ -43,7 +45,7 @@
                         @foreach($mhs_organisasis as $mhs_organisasi)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                
+      
                                 <td><center>{{ $mhs_organisasi->nim}}</center></td>
                                 <td><center>{{ $mhs_organisasi->nama}}</center></td>
                                <td><center>{{ $mhs_organisasi->organisasi }}</center></td>
@@ -58,11 +60,13 @@
                                     
                                 </td>
                             </tr>
+
                             <tr>
                          
                         @endforeach
 
                          
+
                         </tbody>
                     </table>
 
@@ -75,7 +79,7 @@
                                 {{ $mhs_organisasis->links() }}
 
                             </div>
-                           
+
                         </div>
                     </div>
 
