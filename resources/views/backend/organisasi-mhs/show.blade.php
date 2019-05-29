@@ -1,6 +1,8 @@
 @extends('backend.layouts.app')
 
- @section('breadcrumb')
+
+@section('breadcrumb')
+
     {!! cui_breadcrumb([
         'Home' => route('admin.home'),
         'Organisasi Mahasiswa' => route('admin.organisasi-mhs.index'),
@@ -8,13 +10,15 @@
     ]) !!}
 @endsection
 
- @section('toolbar')
-    {!! cui_toolbar_btn_delete(route('admin.organisasi-mhs.destroy', [$MhsOrganisasi->id]), $MhsOrganisasi->id, 'icon-trash', 'Hapus Organisasi Mahasiswa', 'Anda yakin akan menghapus data organisasi ini?') !!}
-    {!! cui_toolbar_btn(route('admin.organisasi-mhs.index'), 'icon-list', 'List Organisasi Mahasiswa') !!}
-    {!! cui_toolbar_btn(route('admin.organisasi-mhs.edit', [$MhsOrganisasi->id]), 'icon-pencil', 'Edit Organisasi Mahasiswa') !!}
+
+@section('toolbar')
+   
+    {!! cui_toolbar_btn(route('admin.organisasi-mhs.index'), 'icon-list', 'List Organisasi') !!}
+    {!! cui_toolbar_btn(route('admin.organisasi-mhs.create'), 'icon-plus', 'Tambah Organisasi') !!}
 @endsection
 
- @section('content')
+@section('content')
+
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -27,12 +31,18 @@
                  {{-- CARD BODY--}}
                 <div class="card-body">
 
-                     {{ Form::model($MhsOrganisasi, []) }}
+            {{ Form::model($organisasi, []) }}
 
+                    
                      <div class="form-group">
-                        <label for="mahasiswa_id"> <b>ID Mahasiswa</b> </label>
-                        {{ Form::text('mahasiswa_id', null, ['class' => 'form-control-plaintext', 'id' => 'mahasiswa_id', 'readonly' => 'readonly', 'disabled']) }}
+                        <label for="mahasiswa_nim"> <b>NIM</b> </label>
+                        {!! Form::text('nim', null, ['class' => 'form-control-plaintext', 'id' => 'nim', 'readonly' => 'readonly', 'disabled']) !!}
+                    </div><br>
+                    <div class="form-group">
+                        <label for="mahasiswa_nama"> <b>Nama Mahasiswa</b> </label>
+                        {!! Form::text('nama', null, ['class' => 'form-control-plaintext', 'id' => 'nama', 'readonly' => 'readonly', 'disabled']) !!}
                     </div>
+
 
                      <div class="form-group">
                         <label for="organisasi"> <b>Organisasi</b> </label>
@@ -53,15 +63,19 @@
                         <label for="tgl_selesai"> <b>Tanggal Selesai</b> </label>
                         {{ Form::input('date', 'tgl_selesai', null, ['class' => 'form-control-plaintext', 'id' => 'tgl_selesai', 'readonly' => 'readonly', 'disabled']) }}
                     </div>
-                    <div class="form-group">
-                        <label for="file_bukti">File Bukti (PDF)</label>
-                        {{ Form::file('file_bukti', null, ['class' => 'form-control-plaintext', 'id' => 'file_bukti', 'readonly' => 'readonly', 'disabled']) }}
-                    </div>
-                    
 
+
+                     <div class="form-group">
+                        <label for="download"><strong>File Bukti</strong></label>
+                        {{ Form::text('download', null, ['class' => 'form-control-plaintext', 'id' => 'download', 'readonly' => 'readonly']) }}
+                         <a href="{{url('../storage/app/public')}}/{{$organisasi->download}}" download="">Download</a>
+                    </div>
                      {{ Form::close() }}
 
-                 </div>
+                     
+
+                 
+
 
                  {{-- CARD FOOTER --}}
                 <div class="card-footer">
