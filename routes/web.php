@@ -1,15 +1,4 @@
 
-
-
-
-
-Letakkan dalam routes
-
-
-
-
-
-
 <?php
 
 /*
@@ -69,19 +58,19 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/penelitian-user/{penelitian}/{user}', 'PenelitianUserController@destroy')->name('admin.penelitian-user.destroy'); //hapus anggota
     
     /** Routing Organisasi Mahasiswa*/
-    Route::get('/admin/organisasimhs', 'OrganisasimhsController@index')->name('admin.organisasimhs.index');  //routing lihat daftar organisasimhs
-    Route::post('/admin/organisasimhs', 'OrganisasimhsController@store')->name('admin.organisasimhs.store'); //routing simpan data organisasimhs baru
-    Route::get('/admin/organisasimhs/create', 'OrganisasimhsController@create')->name('admin.organisasimhs.create'); //routing tampilkan form data organisasimhs baru
-    Route::delete('/admin/organisasimhs/{organisasimhs}', 'OrganisasimhsController@destroy')->name('admin.organisasimhs.destroy'); //routing hapus data organisasimhs baru
-    Route::patch('/admin/organisasimhs/{organisasimhs}', 'OrganisasimhsController@update')->name('admin.organisasimhs.update'); //routing simpan perubahan data organisasimhs
-    Route::get('/admin/organisasimhs/{organisasimhs}', 'OrganisasimhsController@show')->name('admin.organisasimhs.show'); //routing tampilkan detail organisasimhs
-    Route::get('/admin/organisasimhs/{organisasimhs}/edit', 'OrganisasimhsController@edit')->name('admin.organisasimhs.edit');  //routing tampilkan form edit organisasimhs
+    Route::post('/admin/organisasi-mhs', 'OrganisasiMhsController@index')->name('admin.organisasi-mhs.index');  //routing lihat daftar organisasimhs
+    Route::post('/admin/organisasi-mhs', 'OrganisasiMhsController@store')->name('admin.organisasi-mhs.store'); //routing simpan data organisasimhs baru
+    Route::post('/admin/organisasi-mhs/create', 'OrganisasiMhsController@create')->name('admin.organisasi-mhs.create'); //routing tampilkan form data organisasimhs baru
+    Route::delete('/admin/organisasi-mhs/{organisasi-mhs}', 'OrganisasiMhsController@destroy')->name('admin.organisasi-mhs.destroy'); //routing hapus data organisasimhs baru
+    Route::patch('/admin/organisasi-mhs/{organisasi-mhs}', 'OrganisasiMhsController@update')->name('admin.organisasi-mhs.update'); //routing simpan perubahan data organisasimhs
+    Route::post('/admin/organisasi-mhs/{organisasi-mhs}', 'OrganisasiMhsController@show')->name('admin.organisasi-mhs.show'); //routing tampilkan detail organisasimhs
+    Route::post('/admin/organisasi-mhs/{organisasi-mhs}/edit', 'OrganisasiMhsController@edit')->name('admin.organisasi-mhs.edit');  //routing tampilkan form edit organisasimhs
     
 
     /**Pengelolaan organisasi mahasiswa*/
 
-    Route::post('/admin/organisasimhs', 'OrganisaimhsController@store')->name('admin.organisaimhs.store'); //routing simpan data organisaimhs baru
-    Route::get('/admin/organisasimhs/create', 'OrganisaimhsController@create')->name('admin.organisaimhs.create'); //routing tampilkan form data organisaimhs baru
+    Route::post('/admin/organisasi-mhs', 'OrganisaiMhsController@store')->name('admin.organisai-mhs.store'); //routing simpan data organisaimhs baru
+    Route::get('/admin/organisasi-mhs/create', 'OrganisaiMhsController@create')->name('admin.organisai=mhs.create'); //routing tampilkan form data organisaimhs baru
 
     
     // /** Pengelolaan Organisasi Mahasiswa */
